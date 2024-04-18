@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+
+    <script src="./scripts/scripts.js" defer></script>
+    <script src="./scripts/gameplay.js" defer></script>
+
+    <link rel="shortcut icon" href="./images/mario-cap.ico" type="image/x-icon">
+    <title>Super mario</title>
+</head>
+<body>
+    <main> 
+        <div class="tela-inicial-jogar">
+            <div class="container-meio-tela-inicial">
+                <img class="titulo-super-mario" src="./images/MarioTitle.svg" alt="super mario">
+                <div class="container-botao-jogar">
+                    <button class="botao-jogar">
+                        Jogar
+                    </button>
+                </div>
+                <div class="como-jogar">
+                    <p class="instucoes-jogo">Instruções de como jogar: </p>
+                    <ul class="lista-instrucoes">
+                        <li>Clique "enter" para iniciar ou reiniciar</li>
+                        <li>Clique "Espaço" para pular</li>
+                        <li>Clique em "p" para pausar ou retonar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="janela_jogo">
+            <div class="pontuacao">
+                <h1>Pontos: </h1>
+            </div>
+                <img id="mario-personagem" class="mario" src="./images/mario.gif" alt="mario">
+            </div>
+            <div>
+                <img class="obstaculos" id="encanamento" src="images/pipe.png" alt="encanamento">
+            </div>
+        </div>
+    </main>
+</body>
+</html>
