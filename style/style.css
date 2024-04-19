@@ -1,18 +1,81 @@
 @import url('styleJanelaInicial.css');
 
+@font-face {
+    font-family: 'Retro';
+    src: url('../fonts/Retro Gaming.ttf') format('truetype');
+}
+
+:root {
+    --profundidade-mario: 4;
+    --profundidade-encanamento: 3;
+    --profundidade-grama: 2;
+    --profundidade-nuvens: 1;
+    --profundidade-janela-jogo: 0;
+}
+
+
+
+.pontos{
+    font-family: 'Retro' , Times, serif;
+    color: rgb(56, 56, 56);
+}
+
+
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
+body{
+    background-image: linear-gradient( 0deg, aqua 70% , rgb(169, 249, 249) );
+    width: 100vw;
+    height: 100vh;
+}
+
 
 div#janela_jogo {
-    background-image: url('../images/grass.png');
     width: 100vw;
     height: 100vh;
     border: 1px solid black;
-    /* z-index: 0; */
+    position: fixed;
+    bottom: 0;
+
+    z-index: var(--profundidade-janela-jogo);
+}
+
+.img-nuvens>img {
+    scale: 0.7;
+}
+
+.img-nuvens {
+    /* Talvez colocar as nuvens no fundo */
+    /* background-image: url('../images/clouds.png'); */
+    /* background-repeat: repeat-x; */
+    
+    animation: obstaculos 180s infinite linear;
+    position: fixed;
+    /* background: linear-gradient(blue, blue, ); */
+    
+    /* width: 100vw;
+    height: 100vh; */
+    
+    z-index: var(--profundidade-nuvens);
+}
+
+.img-grass {
+    background-image: url('../images/grass.png');
+    
+    width: 100vw;
+    height: 100vh;
+    
+    background-repeat: repeat-x;
+    background-size: contain;
+    
+    position: fixed;
+    bottom: 0;
+    
+    z-index: var(--profundidade-grama);
 }
 
 img#mario-personagem{
@@ -20,12 +83,14 @@ img#mario-personagem{
     position: absolute;
     bottom: 0;
     right: 85%;
+    z-index: var(--profundidade-mario);
 }
 
 img#encanamento{
     height: 122px;
-    position: fixed ;
+    position: fixed;
     bottom: 0;
+    z-index: var(--profundidade-encanamento);
 }
 
 .salto{
@@ -33,9 +98,10 @@ img#encanamento{
 }
 
 .obstaculos{
-    animation: obstaculos 1s infinite linear;
-
+    animation: obstaculos 2s infinite linear;
 }
+
+
 
 .gameOver{
     animation: saltoGameOver 0.9s;
@@ -94,10 +160,17 @@ img#encanamento{
 
 @keyframes obstaculos{
     from {
-        right: -10%;
+        right: -50%;
     }
     to {
         right: 100%;
     }
 }
 
+@media (max-width: 1048px) {
+    /* 1048, 1024 */
+    .img-grass {
+        background-size: cover;
+        height: 100vh;
+    }
+}
