@@ -11,15 +11,17 @@
     --profundidade-grama: 2;
     --profundidade-nuvens: 1;
     --profundidade-janela-jogo: 0;
+
+    --widht-pipe: clamp(60px, 10%, 100px);
+    --right-start-pipe-animation: clamp(-60px, -10%, -100px);
+    --jump-mario: clamp(150px, 30%, 200px);
+    --nuvem-scale: 0.7;
+
+    /* Valores padrão */
+    --tempo-pulo-mario: 0.5s;
+    --tempo-encanamento: 3s;
+    --tempo-nuvem: 5s;
 }
-
-
-
-.pontos{
-    font-family: 'Retro' , Times, serif;
-    color: rgb(56, 56, 56);
-}
-
 
 *{
     margin: 0px;
@@ -27,12 +29,16 @@
     box-sizing: border-box;
 }
 
+.pontos{
+    font-family: 'Retro' , Times, serif;
+    color: rgb(56, 56, 56);
+}
+
 body{
     background-image: linear-gradient( 0deg, aqua 70% , rgb(169, 249, 249) );
     width: 100vw;
     height: 100vh;
 }
-
 
 div#janela_jogo {
     width: 100vw;
@@ -45,21 +51,16 @@ div#janela_jogo {
 }
 
 .img-nuvens>img {
-    scale: 0.7;
+    scale: var(--nuvem-scale);
+
+    z-index: var(--profundidade-nuvens);
 }
 
 .img-nuvens {
-    /* Talvez colocar as nuvens no fundo */
-    /* background-image: url('../images/clouds.png'); */
-    /* background-repeat: repeat-x; */
-    
-    animation: obstaculos 180s infinite linear;
-    position: fixed;
-    /* background: linear-gradient(blue, blue, ); */
-    
-    /* width: 100vw;
-    height: 100vh; */
-    
+    animation: obstaculos var(--tempo-nuvem) infinite linear;
+    position: absolute;
+    top: 15%;
+
     z-index: var(--profundidade-nuvens);
 }
 
@@ -72,36 +73,35 @@ div#janela_jogo {
     background-repeat: repeat-x;
     background-size: contain;
     
-    position: fixed;
+    position: absolute;
     bottom: 0;
     
     z-index: var(--profundidade-grama);
 }
 
 img#mario-personagem{
-    width: 150px;
+    width: clamp(100px, 20%, 150px);
+    left: 5%;
     position: absolute;
     bottom: 0;
-    right: 85%;
+   
     z-index: var(--profundidade-mario);
 }
 
 img#encanamento{
-    height: 122px;
-    position: fixed;
+    width: var(--widht-pipe);
+    position: absolute;
     bottom: 0;
     z-index: var(--profundidade-encanamento);
 }
 
 .salto{
-    animation: salto 0.6s ;
+    animation: salto var(--tempo-pulo-mario) ease-out;
 }
 
 .obstaculos{
-    animation: obstaculos 2s infinite linear;
+    animation: obstaculos var(--tempo-encanamento) infinite linear;
 }
-
-
 
 .gameOver{
     animation: saltoGameOver 0.9s;
@@ -113,23 +113,13 @@ img#encanamento{
 }
 
 @keyframes salto{
-    0%{
-        bottom: 0;
+    0% {bottom: 0;}
+
+    44%, 50%, 56%{
+        bottom: var(--jump-mario);
     }
 
-    44%{
-        bottom: 150px;
-    }
-
-    50%{
-        bottom: 150px;
-    }
-
-    56%{
-        bottom: 150px;
-    }
-
-    100% {bottom: 0%;}
+    100% {bottom: 0;}
 
 }
 
@@ -159,6 +149,15 @@ img#encanamento{
 }
 
 @keyframes obstaculos{
+    from {
+        right: -50%;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes nuvem-animacao{
     from {
         right: -50%;
     }
